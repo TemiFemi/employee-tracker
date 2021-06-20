@@ -1,13 +1,13 @@
-const inquirer = require("inquirer");
-const mySql = require("mysql");
-const inquirer = require("inquirer");
-const table = require("console.table");
-const add = require("./lib/add");
-const update = require("./lib/update");
-const view = require("./lib/view");
+var inquirer = require("inquirer");
+var mysql = require("mysql");
+var inquirer = require("inquirer");
+var table = require("console.table");
+var add = require("./lib/add");
+var update = require("./lib/update");
+var view = require("./lib/view");
 
 // create the connection information for the sql database
-const connection = mySql.createConnection({
+var connection = mysql.createConnection({
     host: "localhost",
     // Your port; if not 3306
     port: 3306,
@@ -18,6 +18,12 @@ const connection = mySql.createConnection({
     database: "employee_db"
 })
 
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId + "\n")
+    exports.start();
+});
+
 exports.start = () => {
     inquirer.prompt([
         {
@@ -26,10 +32,25 @@ exports.start = () => {
             name: "choice",
             choices: [
                 "View all employees",
-                "Ass employee",
-                "Uodate employee role",
+                "Add employee",
+                "Update employee role",
                 "Exit"
             ]
         }
     ])
-}
+        .then(function (answer) {
+            if (answer.choice === "View all employees") {
+                view.viewAllEmployees();
+            }
+            else if (answer.choice === "Add employee") {
+                add.addEmployee();
+            }
+            else if (answer.choice === "Update employee role") {
+                update.updateRole();
+            }
+            else if (answer.choice === "Exit") {
+                connection.end();
+                return
+            }
+        });
+};
