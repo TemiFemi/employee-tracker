@@ -13,12 +13,12 @@
  Employee Tracker
 
 # Description
- Allows users to dynamically update, and manage their business. It utilizes the power of the mysql node module to use javascript to update our mySQL database and view our insertions using console.table.
+ Allows individuals to dynamically update, and manage their business and their employees. It utilizes the power of the mysql node module to use javascript to update our mySQL database and view our insertions using console.table.
 
 
 
 # Installation Instructions
- Through Github create a clone of the repository. Once cloned to your local computer, in the terminal, run npm install. Load the seed.sql and the schema.sql into MySQLWorkbench. Once the packages have been installed and MySQLWorkbench is running, run node server.js in the terminal. Prompts should appear automatically after.
+  Create a clone of the repository. Once you have cloned to your local computer, run npm install through the terminal. Once you finish running it in terminal. Load the seed.sql and the schema.sql into MySQLWorkbench. Once everything is running, the prompts should appear automatically after.
 
 # Usage
 *See "Installation Instructions"*
